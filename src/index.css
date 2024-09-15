@@ -1,6 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
 @layer base {
   :root {
     --background: 0 0% 100%;
@@ -56,11 +57,73 @@
     --chart-5: 340 75% 55%
   }
 }
+
+:root {
+  --main-one: #a855f7; /* Default color */
+  --main-two: #9333ea; /* Default color */
+}
+
+.bg-main-one {
+  background-color: var(--main-one);
+}
+
+.bg-main-two {
+  background-color: var(--main-two);
+}
+
+.text-main-one {
+  color: var(--main-one);
+}
+
+.text-main-two {
+  color: var(--main-two);
+}
+
 @layer base {
   * {
     @apply border-border;
+    font-family: Ubuntu, sans-serif;
   }
   body {
     @apply bg-background text-foreground;
   }
+}
+.scrollbar-gradient-top {
+  --scrollbar-color: linear-gradient(to bottom, transparent, #a855f7);
+}
+
+.scrollbar-gradient-bottom {
+  --scrollbar-color: linear-gradient(to bottom, #a855f7, transparent);
+}
+
+
+@layer utilities {
+  ::-webkit-scrollbar {
+    @apply transition-colors bg-transparent w-1.5 border-l border-l-transparent p-[1px];
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply rounded-full bg-transparent transition-colors;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    transition: background 0.5s ease;
+    background: var(--scrollbar-color);
+    @apply transition-all;
+  }
+
+  ::-webkit-scrollbar:horizontal {
+    @apply transition-colors bg-transparent h-1 border-t border-t-transparent p-[1px];
+  }
+
+  .hidden-scrollbar::-webkit-scrollbar {
+    @apply hidden;
+  }
+}
+
+
+
+.rdp-vhidden {
+  @apply hidden;
 }

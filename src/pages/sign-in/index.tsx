@@ -24,7 +24,7 @@ export default function SignUp() {
 		<div className="bg-black text-white min-h-screen flex items-center justify-center relative overflow-hidden">
 			<div className="absolute inset-0 bg-grid-white/[0.05] z-0 pointer-events-none">
 				<div
-				  className="absolute pointer-events-none inset-0 flex items-center justify-center bg-black [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)]"></div>
+					className="absolute pointer-events-none inset-0 flex items-center justify-center bg-black [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)]"></div>
 			</div>
 
 			<motion.div
@@ -35,22 +35,11 @@ export default function SignUp() {
 			>
 				<div className="my-8">
 					<h2 className="font-bold w-full text-2xl text-neutral-200 text-center px-4">
-						Welcome to Hosting-at.OVH
+						Welcome back
 					</h2>
 				</div>
 				<form className="space-y-8">
 					<div className="flex flex-col mb-4">
-						<LabelInputContainer className="mb-6">
-							<Label htmlFor="name">Name</Label>
-							<Input
-								type="text"
-								id="name"
-								name="name"
-								className="w-full"
-								placeholder="Enter your name"
-								required
-							/>
-						</LabelInputContainer>
 						<LabelInputContainer className="mb-6">
 							<Label htmlFor="email">Email</Label>
 							<Input
@@ -63,7 +52,7 @@ export default function SignUp() {
 							/>
 						</LabelInputContainer>
 
-						<LabelInputContainer className="mb-6">
+						<LabelInputContainer>
 							<Label htmlFor="password">Password</Label>
 							<Input
 								type="password"
@@ -75,22 +64,11 @@ export default function SignUp() {
 							/>
 						</LabelInputContainer>
 
-						<LabelInputContainer>
-							<Label htmlFor="invitekey">Invite Key</Label>
-							<Input
-								type="text"
-								id="invitekey"
-								name="invitekey"
-								className="w-full rounded-md"
-								placeholder="Enter your invite key"
-								required
-							/>
-						</LabelInputContainer>
 						<p className={'text-red-500 pb-5 font-semibold'}>{error}</p>
 						{isSubmitting ? (
 							<motion.button
 								type="submit"
-								className="relative block w-full text-white rounded-md h-10 font-medium bg-gradient-to-r from-main-one to-main-two shadow-lg overflow-hidden"
+								className="relative block w-full text-white rounded-md h-10 font-medium bg-gradient-to-r from-purple-400 to-purple-500 shadow-lg overflow-hidden"
 								initial={{scale: 1, rotateX: 0}}
 								animate={{scale: 1.02, rotateX: 0}}
 								whileHover={{scale: 1.05, rotateX: 15}}
@@ -103,7 +81,7 @@ export default function SignUp() {
 									animate={{opacity: 0, y: -30}}
 									transition={{duration: 0.4}}
 								>
-									Sign up <ArrowRightIcon/>
+									Sign in <ArrowRightIcon/>
 								</motion.div>
 
 								<motion.div
@@ -138,15 +116,15 @@ export default function SignUp() {
 								whileHover={{scale: 1.05}}
 								whileTap={{scale: 0.95}}
 							>
-								Sign up <ArrowRightIcon/>
+								Sign in <ArrowRightIcon/>
 								<BottomGradient/>
 							</motion.button>
 						)}
 					</div>
 				</form>
 				<p className="mt-4 text-center text-gray-400">
-					Already have an account?{' '}
-					<a href="/sign-in" className="text-main-one hover:underline">Log in</a>
+					New to our page?{' '}
+					<a href="/sign-up" className="text-purple-400 hover:underline">Sign up</a>
 				</p>
 			</motion.div>
 		</div>

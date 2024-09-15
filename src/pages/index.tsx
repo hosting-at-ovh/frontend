@@ -1,5 +1,6 @@
 import {motion} from "framer-motion";
 import {Upload, Zap, Shield, ChevronRight, Check, Diamond, Crown, User} from 'lucide-react'
+import ColorPickerDialog from "../components/shared/color-picker-dialog.tsx";
 
 const fadeIn = {
 	initial: { opacity: 0, y: 20 },
@@ -15,9 +16,9 @@ const stagger = {
 }
 
 export default function Index() {
+
 	return (
 		<div className="bg-black text-white min-h-screen relative overflow-hidden">
-			{/* Background grid */}
 			<div className="absolute inset-0 bg-grid-white/[0.07] z-0 pointer-events-none">
 				<div
 					className="absolute pointer-events-none inset-0 flex items-center justify-center bg-black [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)]"></div>
@@ -27,7 +28,7 @@ export default function Index() {
 			<header className="container mx-auto py-6 px-4 relative z-10">
 				<nav className="flex justify-between items-center">
 					<motion.h1
-						className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-pink-600"
+						className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-main-one to-main-two"
 						initial={{opacity: 0, x: -20}}
 						animate={{opacity: 1, x: 0}}
 						transition={{duration: 0.5}}
@@ -44,7 +45,7 @@ export default function Index() {
 							<motion.a
 								key={item}
 								href={`#${item.toLowerCase()}`}
-								className="hover:text-purple-400 transition-colors backdrop-blur-sm bg-white/10 px-4 py-2 rounded-full"
+								className="hover:text-main-one transition-colors backdrop-blur-md bg-white bg-opacity-[3%] px-4 py-2 rounded-md border border-gray-400 border-opacity-20"
 								variants={fadeIn}
 							>
 								{item}
@@ -66,20 +67,25 @@ export default function Index() {
 							<h2 className="text-5xl font-bold mb-6 leading-tight z-20">
 								Upload and Share <br/>
 								<span
-									className="bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-pink-600 z-10">
+									className="bg-clip-text text-transparent bg-gradient-to-r from-main-one to-main-two z-10 drama-main-two drama-1">
 									Screenshots Instantly
 								</span>
 							</h2>
 							<p className="text-xl mb-8 text-gray-300 z-10">
 								Fast, secure, and easy-to-use screenshot hosting for you.
 							</p>
-							<motion.button
-								className="backdrop-blur-lg border border-gray-400 border-opacity-5 bg-gray-400 bg-opacity-[10%] text-white px-8 py-3 rounded-full text-lg font-semibold hover:from-purple-600 hover:to-pink-600 transition-all duration-300 flex items-center"
-								whileHover={{scale: 1.05}}
-								whileTap={{scale: 0.95}}
-							>
-								Get Started <ChevronRight className="ml-2"/>
-							</motion.button>
+							<div className={'flex flex-row gap-5'}>
+								<motion.button
+									className="backdrop-blur-lg border border-gray-400 border-opacity-5 bg-gray-400 bg-opacity-[10%] text-white px-8 py-3 rounded-lg text-lg font-semibold hover:from-main-two hover:to-main-two transition-all duration-300 flex items-center"
+									whileHover={{scale: 1.05}}
+									whileTap={{scale: 0.95}}
+								>
+									<a href={'/sign-up'} className={'flex items-center justify-center'}>
+										Get Started <ChevronRight className="ml-2"/>
+									</a>
+								</motion.button>
+							</div>
+
 						</motion.div>
 						<motion.div
 							className="lg:w-1/2"
@@ -89,7 +95,7 @@ export default function Index() {
 						>
 							<div className="relative">
 								<div
-									className="absolute inset-0 bg-gradient-to-r from-purple-400 to-pink-600 rounded-lg filter blur-3xl opacity-30 z-0"></div>
+									className="absolute inset-0 bg-gradient-to-r from-main-one to-main-two rounded-lg filter blur-3xl opacity-30 z-0"></div>
 								<div className="relative backdrop-blur-lg bg-white/5 p-6 rounded-lg shadow-xl z-10">
 									<img src="https://archive.org/download/placeholder-image/placeholder-image.jpg"
 										 alt="Screenshot uploader interface"
@@ -140,7 +146,7 @@ export default function Index() {
 									className="backdrop-blur-lg bg-white bg-opacity-[1%] p-6 rounded-lg shadow-lg border border-gray-400 border-opacity-5"
 									variants={fadeIn}
 								>
-									<div className="text-purple-400 mb-4">{feature.icon}</div>
+									<div className="text-main-one mb-4 drama-main-one drama-1">{feature.icon}</div>
 									<h4 className="text-xl font-semibold mb-2">{feature.title}</h4>
 									<p className="text-gray-300">{feature.description}</p>
 								</motion.div>
@@ -172,7 +178,7 @@ export default function Index() {
 								{number: '400K', label: 'Total Views'},
 							].map((stat, index) => (
 								<motion.div key={index} className="text-center" variants={fadeIn}>
-									<h4 className="text-5xl font-bold mb-2 bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-pink-600">
+									<h4 className="text-5xl font-bold mb-2 bg-clip-text text-transparent bg-gradient-to-r from-main-one to-main-two drama-1 drama-main-two">
 										{stat.number}
 									</h4>
 									<p className="text-gray-400">{stat.label}</p>
@@ -191,7 +197,7 @@ export default function Index() {
 							whileInView="animate"
 							viewport={{once: true}}
 						>
-							Choose Your Role
+							Our Roles
 						</motion.h3>
 						<motion.div
 							className="grid grid-cols-1 md:grid-cols-3 gap-8"
@@ -242,8 +248,8 @@ export default function Index() {
 									className="backdrop-blur-lg bg-white bg-opacity-[1%] p-6 rounded-lg shadow-lg text-center border border-gray-400 border-opacity-5"
 									variants={fadeIn}
 								>
-									<div className="text-purple-400 mb-4 flex justify-center">{role.icon}</div>
-									<h4 className="text-2xl font-semibold mb-4">{role.name}</h4>
+									<div className="text-main-one mb-4 flex justify-center drama-main-two drama-1">{role.icon}</div>
+									<h4 className="text-2xl font-semibold mb-4 text-glow-white">{role.name}</h4>
 									<p className="text-gray-300 mb-6">{role.description}</p>
 									<ul className="text-left mb-6 space-y-2">
 										{role.features.map((feature, i) => (
@@ -262,8 +268,9 @@ export default function Index() {
 
 			<footer className="py-8">
 				<div className="container mx-auto px-4 text-center text-gray-400">
+
 					<p>&copy; 2024 Hosting-at.OVH. All rights reserved.</p>
-					<div className="flex justify-center gap-4 mt-4 text-gray-400">
+					<div className="flex justify-center gap-4 mt-4 text-gray-400 items-center">
 						<a href="#" className="hover:underline">Terms of Service</a>
 						<a href="#" className="hover:underline">Imprint</a>
 						<a href="#" className="hover:underline">Privacy</a>
@@ -271,6 +278,9 @@ export default function Index() {
 				</div>
 			</footer>
 
+			<div className="fixed bottom-4 right-4">
+				<ColorPickerDialog/>
+			</div>
 
 		</div>
 	)
