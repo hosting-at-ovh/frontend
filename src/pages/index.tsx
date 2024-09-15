@@ -1,4 +1,4 @@
-import { motion } from 'framer-motion'
+import {motion} from "framer-motion";
 import {Upload, Zap, Shield, ChevronRight, Check, Diamond, Crown, User} from 'lucide-react'
 
 const fadeIn = {
@@ -14,13 +14,13 @@ const stagger = {
 	}
 }
 
-export default function Page() {
-	return  (
+export default function Index() {
+	return (
 		<div className="bg-black text-white min-h-screen relative overflow-hidden">
 			{/* Background grid */}
 			<div className="absolute inset-0 bg-grid-white/[0.07] z-0 pointer-events-none">
 				<div
-					className="absolute pointer-events-none inset-0 flex items-center justify-center dark:bg-black bg-white [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)]"></div>
+					className="absolute pointer-events-none inset-0 flex items-center justify-center bg-black [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)]"></div>
 			</div>
 
 
@@ -28,9 +28,9 @@ export default function Page() {
 				<nav className="flex justify-between items-center">
 					<motion.h1
 						className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-pink-600"
-						initial={{ opacity: 0, x: -20 }}
-						animate={{ opacity: 1, x: 0 }}
-						transition={{ duration: 0.5 }}
+						initial={{opacity: 0, x: -20}}
+						animate={{opacity: 1, x: 0}}
+						transition={{duration: 0.5}}
 					>
 						Hosting-at.OVH
 					</motion.h1>
@@ -40,7 +40,7 @@ export default function Page() {
 						initial="initial"
 						animate="animate"
 					>
-						{['Features', 'Pricing', 'Contact'].map((item) => (
+						{['Features', 'Roles', 'Contact'].map((item) => (
 							<motion.a
 								key={item}
 								href={`#${item.toLowerCase()}`}
@@ -74,7 +74,7 @@ export default function Page() {
 								Fast, secure, and easy-to-use screenshot hosting for you.
 							</p>
 							<motion.button
-								className="backdrop-blur-lg border border-gray-400 border-opacity-10 bg-gray-400 bg-opacity-[10%] text-white px-8 py-3 rounded-full text-lg font-semibold hover:from-purple-600 hover:to-pink-600 transition-all duration-300 flex items-center"
+								className="backdrop-blur-lg border border-gray-400 border-opacity-5 bg-gray-400 bg-opacity-[10%] text-white px-8 py-3 rounded-full text-lg font-semibold hover:from-purple-600 hover:to-pink-600 transition-all duration-300 flex items-center"
 								whileHover={{scale: 1.05}}
 								whileTap={{scale: 0.95}}
 							>
@@ -91,7 +91,8 @@ export default function Page() {
 								<div
 									className="absolute inset-0 bg-gradient-to-r from-purple-400 to-pink-600 rounded-lg filter blur-3xl opacity-30 z-0"></div>
 								<div className="relative backdrop-blur-lg bg-white/5 p-6 rounded-lg shadow-xl z-10">
-									<img src="https://archive.org/download/placeholder-image/placeholder-image.jpg" alt="Screenshot uploader interface"
+									<img src="https://archive.org/download/placeholder-image/placeholder-image.jpg"
+										 alt="Screenshot uploader interface"
 										 className="w-full rounded-lg"/>
 								</div>
 							</div>
@@ -136,7 +137,7 @@ export default function Page() {
 							].map((feature, index) => (
 								<motion.div
 									key={index}
-									className="backdrop-blur-lg bg-white bg-opacity-[1%] p-6 rounded-lg shadow-lg"
+									className="backdrop-blur-lg bg-white bg-opacity-[1%] p-6 rounded-lg shadow-lg border border-gray-400 border-opacity-5"
 									variants={fadeIn}
 								>
 									<div className="text-purple-400 mb-4">{feature.icon}</div>
@@ -238,7 +239,7 @@ export default function Page() {
 							].map((role, index) => (
 								<motion.div
 									key={index}
-									className="backdrop-blur-lg bg-white bg-opacity-[1%] p-6 rounded-lg shadow-lg text-center"
+									className="backdrop-blur-lg bg-white bg-opacity-[1%] p-6 rounded-lg shadow-lg text-center border border-gray-400 border-opacity-5"
 									variants={fadeIn}
 								>
 									<div className="text-purple-400 mb-4 flex justify-center">{role.icon}</div>
@@ -262,8 +263,15 @@ export default function Page() {
 			<footer className="py-8">
 				<div className="container mx-auto px-4 text-center text-gray-400">
 					<p>&copy; 2024 Hosting-at.OVH. All rights reserved.</p>
+					<div className="flex justify-center gap-4 mt-4 text-gray-400">
+						<a href="#" className="hover:underline">Terms of Service</a>
+						<a href="#" className="hover:underline">Imprint</a>
+						<a href="#" className="hover:underline">Privacy</a>
+					</div>
 				</div>
 			</footer>
+
+
 		</div>
 	)
 }
