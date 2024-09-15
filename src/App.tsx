@@ -70,7 +70,7 @@ export default function Page() {
 								Fast, secure, and easy-to-use screenshot hosting for you.
 							</p>
 							<motion.button
-								className="bg-gradient-to-r from-purple-500 to-pink-500 text-white px-8 py-3 rounded-full text-lg font-semibold hover:from-purple-600 hover:to-pink-600 transition-all duration-300 flex items-center"
+								className="backdrop-blur-lg border border-gray-400 border-opacity-5 bg-gray-400 bg-opacity-[5%] text-white px-8 py-3 rounded-full text-lg font-semibold hover:from-purple-600 hover:to-pink-600 transition-all duration-300 flex items-center"
 								whileHover={{scale: 1.05}}
 								whileTap={{scale: 0.95}}
 							>
