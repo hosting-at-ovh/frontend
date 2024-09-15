@@ -18,7 +18,11 @@ export default function Page() {
 	return  (
 		<div className="bg-black text-white min-h-screen relative overflow-hidden">
 			{/* Background grid */}
-			<div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxwYXRoIGQ9Ik0wIDBoNjB2NjBIMHoiLz48cGF0aCBkPSJNNjAgMEgwdjYwaDYwVjB6TTAgMGg2MHY2MEgwVjB6IiBzdHJva2U9IiMyMDIwMjAiIHN0cm9rZS13aWR0aD0iLjUiLz48L2c+PC9zdmc+')] opacity-20 z-0 pointer-events-none" />
+			<div className="absolute inset-0 bg-grid-white/[0.1] z-0 pointer-events-none">
+				<div
+					className="absolute pointer-events-none inset-0 flex items-center justify-center dark:bg-black bg-white [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)]"></div>
+			</div>
+
 
 			<header className="container mx-auto py-6 px-4 relative z-10">
 				<nav className="flex justify-between items-center">
@@ -70,7 +74,7 @@ export default function Page() {
 								Fast, secure, and easy-to-use screenshot hosting for you.
 							</p>
 							<motion.button
-								className="backdrop-blur-lg border border-gray-400 border-opacity-5 bg-gray-400 bg-opacity-[5%] text-white px-8 py-3 rounded-full text-lg font-semibold hover:from-purple-600 hover:to-pink-600 transition-all duration-300 flex items-center"
+								className="backdrop-blur-lg border border-gray-400 border-opacity-10 bg-gray-400 bg-opacity-[10%] text-white px-8 py-3 rounded-full text-lg font-semibold hover:from-purple-600 hover:to-pink-600 transition-all duration-300 flex items-center"
 								whileHover={{scale: 1.05}}
 								whileTap={{scale: 0.95}}
 							>
