@@ -18,7 +18,7 @@ export default function Page() {
 	return  (
 		<div className="bg-black text-white min-h-screen relative overflow-hidden">
 			{/* Background grid */}
-			<div className="absolute inset-0 bg-grid-white/[0.1] z-0 pointer-events-none">
+			<div className="absolute inset-0 bg-grid-white/[0.07] z-0 pointer-events-none">
 				<div
 					className="absolute pointer-events-none inset-0 flex items-center justify-center dark:bg-black bg-white [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)]"></div>
 			</div>
