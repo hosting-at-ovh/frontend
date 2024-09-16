@@ -1,4 +1,4 @@
-export default function FlexText({username}: {username: string}) {
+export default function FlexText({username}: { username: string }) {
 
 	const roleParticles = [
 		{

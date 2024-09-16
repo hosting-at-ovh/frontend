@@ -1,10 +1,10 @@
 import {motion} from "framer-motion";
-import {Upload, Zap, Shield, ChevronRight, Check, Diamond, Crown, User} from 'lucide-react'
+import {Check, ChevronRight, Crown, Diamond, Shield, Upload, User, Zap} from 'lucide-react'
 import {PiGithubLogo} from "react-icons/pi";
 
 const fadeIn = {
-	initial: { opacity: 0, y: 20 },
-	animate: { opacity: 1, y: 0, transition: { duration: 0.6 } },
+	initial: {opacity: 0, y: 20},
+	animate: {opacity: 1, y: 0, transition: {duration: 0.6}},
 };
 
 const stagger = {
@@ -93,11 +93,11 @@ export default function Index() {
 								Upload and Share <br/>
 								<span
 									className="bg-clip-text text-transparent bg-gradient-to-r from-main-one to-main-two z-10 drama-main-two drama-1">
-									Screenshots Instantly
+									Files Instantly
 								</span>
 							</h2>
 							<p className="text-xl mb-8 text-gray-300 z-10">
-								Fast, secure, and easy-to-use screenshot hosting for you.
+								Fast, secure, and easy-to-use file hosting for you.
 							</p>
 							<div className={'flex flex-row gap-5'}>
 								<motion.button
@@ -153,7 +153,7 @@ export default function Index() {
 								{
 									icon: <Upload size={40}/>,
 									title: 'Easy Uploads',
-									description: 'Drag and drop or paste your screenshots'
+									description: 'Drag and drop or paste your files'
 								},
 								{
 									icon: <Zap size={40}/>,
@@ -231,7 +231,7 @@ export default function Index() {
 						</motion.h3>
 						<div className="flex justify-center">
 							<motion.div
-								className={`grid grid-cols-1 md:grid-cols-${Math.min(2, teamMembers.length)} lg:grid-cols-${Math.min(4, teamMembers.length)} gap-8 items-center justify-center`}
+								className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-${Math.min(4, teamMembers.length)} gap-8 items-center justify-center`}
 								variants={stagger}
 								initial="initial"
 								whileInView="animate"
