@@ -119,13 +119,13 @@ const Layout = ({children}: { children: React.ReactNode }) => {
 
 						<div className="flex items-center space-x-4">
 							<button
-								className="p-2 rounded-md bg-zinc-800 hover:bg-zinc-700 transition-colors border border-gray-400 border-opacity-20 min-h-14 max-h-14 h-full">
+								className="p-2 rounded-md bg-zinc-800 hover:bg-zinc-700 transition-colors border border-gray-400 border-opacity-20 min-h-12 max-h-12 h-full">
 								<BellIcon className="w-7 h-7"/>
 								<div
 									className="absolute w-3 h-3 bg-main-one rounded-full -translate-y-3 translate-x-4"/>
 							</button>
 							<button
-								className="flex items-center space-x-2 p-2 rounded-md bg-zinc-800 hover:bg-zinc-700 transition-colors border border-gray-400 border-opacity-20 min-h-14 max-h-14">
+								className="flex items-center space-x-2 p-2 rounded-md bg-zinc-800 hover:bg-zinc-700 transition-colors border border-gray-400 border-opacity-20 min-h-12 max-h-12">
 								<Avatar>
 									<AvatarImage src="https://github.com/shadcn.png"/>
 									<AvatarFallback className="bg-black bg-opacity-25">CN</AvatarFallback>

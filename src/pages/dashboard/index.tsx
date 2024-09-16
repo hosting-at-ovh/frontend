@@ -50,7 +50,7 @@ export default function Index() {
 							News & Updates
 							<NewspaperIcon/>
 						</h2>
-						<div className={'p-4 bg-black bg-opacity-20 rounded-full'}>
+						<div className={'p-4 bg-black bg-opacity-20 rounded-lg'}>
 							<p className="text-gray-400">No data.</p>
 						</div>
 					</CardContent>
@@ -62,7 +62,7 @@ export default function Index() {
 							Your last uploads
 							<Files/>
 						</h2>
-						<div className={'p-4 bg-black bg-opacity-20 rounded-full'}>
+						<div className={'p-4 bg-black bg-opacity-20 rounded-lg'}>
 							<p className="text-gray-400">No data.</p>
 						</div>
 					</CardContent>
