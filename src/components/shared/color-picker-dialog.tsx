@@ -1,13 +1,13 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import {Dialog, DialogClose, DialogContent, DialogTrigger} from '../ui/dialog';
 import { Button } from "../ui/button.tsx";
 import {Label} from "../ui/label.tsx";
 import {ColorWheelIcon} from "@radix-ui/react-icons";
+import { useColor } from '../../context/ColorContext.tsx';
 
 export default function ColorPickerDialog() {
-	const [color1, setColor1] = useState("#a855f7");
-	const [color2, setColor2] = useState("#9333ea");
 
+	const { color1, color2, setColor1, setColor2 } = useColor();
 
 	useEffect(() => {
 		const savedColor1 = localStorage.getItem('main-one') || "#a855f7";
@@ -40,9 +40,9 @@ export default function ColorPickerDialog() {
 
 	return (
 		<Dialog onOpenChange={handleSave}>
-			<DialogTrigger asChild>
-				<button className={'border border-gray-400 border-opacity-20 backdrop-blur-lg p-4 rounded-md bg-black bg-opacity-5 flex items-center gap-2'}>
-					<ColorWheelIcon className={'w-5 h-5'}/>
+			<DialogTrigger asChild className={'z-50'}>
+				<button className={'border border-gray-400 border-opacity-20 backdrop-blur-lg p-4 rounded-md bg-black bg-opacity-5 flex items-center gap-2 '}>
+					<ColorWheelIcon className={'w-5 h-5 text-white'}/>
 				</button>
 			</DialogTrigger>
 			<DialogContent className="bg-black bg-opacity-5 backdrop-blur-lg p-6 rounded-b-md shadow-lg text-white border-gray-400 border-opacity-20">

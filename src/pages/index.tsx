@@ -1,6 +1,6 @@
 import {motion} from "framer-motion";
 import {Upload, Zap, Shield, ChevronRight, Check, Diamond, Crown, User} from 'lucide-react'
-import ColorPickerDialog from "../components/shared/color-picker-dialog.tsx";
+import {PiGithubLogo} from "react-icons/pi";
 
 const fadeIn = {
 	initial: { opacity: 0, y: 20 },
@@ -14,6 +14,31 @@ const stagger = {
 		}
 	}
 }
+
+const teamMembers = [
+	{
+		name: "Fedox",
+		role: "Founder & Developer",
+		image: "/assets/staff/fedox.png?height=200&width=200",
+		github: "https://github.com/Fedox-die-Ente"
+	},
+	{
+		name: "Austria7",
+		role: "Co-Founder & Developer",
+		image: "/assets/staff/austria7.png?height=200&width=200",
+		github: "https://github.com/Austria7"
+	},
+	// {
+	// 	name: "Mike Johnson",
+	// 	role: "Lead Developer",
+	// 	image: "/placeholder.svg?height=200&width=200",
+	// },
+	// {
+	// 	name: "Sarah Brown",
+	// 	role: "UX Designer",
+	// 	image: "/placeholder.svg?height=200&width=200",
+	// },
+]
 
 export default function Index() {
 
@@ -188,6 +213,63 @@ export default function Index() {
 					</div>
 				</section>
 
+				<section id="team" className="py-20 bg-black text-white relative overflow-hidden">
+					<div className="absolute inset-0 bg-grid-white/[0.07] z-0 pointer-events-none">
+						<div
+							className="absolute pointer-events-none inset-0 flex items-center justify-center bg-black [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)]"
+						></div>
+					</div>
+					<div className="container mx-auto px-4 relative z-10">
+						<motion.h3
+							className="text-3xl font-bold mb-12 text-center"
+							variants={fadeIn}
+							initial="initial"
+							whileInView="animate"
+							viewport={{once: true}}
+						>
+							Our Team
+						</motion.h3>
+						<div className="flex justify-center">
+							<motion.div
+								className={`grid grid-cols-1 md:grid-cols-${Math.min(2, teamMembers.length)} lg:grid-cols-${Math.min(4, teamMembers.length)} gap-8 items-center justify-center`}
+								variants={stagger}
+								initial="initial"
+								whileInView="animate"
+								viewport={{once: true}}
+							>
+								{teamMembers.map((member, index) => (
+									<motion.div
+										key={index}
+										className="backdrop-blur-lg bg-white bg-opacity-[1%] p-12 rounded-lg shadow-lg border border-gray-400 border-opacity-5 text-center"
+										variants={fadeIn}
+									>
+										<motion.div
+											className="w-32 h-32 mx-auto mb-4 rounded-full overflow-hidden animate-spin"
+											whileHover={{scale: 1.05}}
+											transition={{type: "spring", stiffness: 300}}
+										>
+											<img src={member.image} alt={member.name}
+												 className="w-full h-full object-cover"/>
+										</motion.div>
+										<h4 className="text-xl font-semibold mb-2">{member.name}</h4>
+										<p className="text-gray-400">{member.role}</p>
+										<motion.button
+											onClick={() => window.open(member.github)}
+											className="mt-4 bg-gradient-to-r from-main-one to-main-two text-white px-4 py-2 rounded-full text-sm font-semibold hover:opacity-90 transition-opacity duration-300 flex items-center justify-center mx-auto"
+											whileHover={{scale: 1.05}}
+											whileTap={{scale: 0.95}}
+										>
+											<PiGithubLogo className="mr-2 w-5 h-5"/>
+											View GitHub
+										</motion.button>
+									</motion.div>
+								))}
+							</motion.div>
+						</div>
+					</div>
+				</section>
+
+
 				<section id="roles" className="py-20">
 					<div className="container mx-auto px-4">
 						<motion.h3
@@ -248,7 +330,8 @@ export default function Index() {
 									className="backdrop-blur-lg bg-white bg-opacity-[1%] p-6 rounded-lg shadow-lg text-center border border-gray-400 border-opacity-5"
 									variants={fadeIn}
 								>
-									<div className="text-main-one mb-4 flex justify-center drama-main-two drama-1">{role.icon}</div>
+									<div
+										className="text-main-one mb-4 flex justify-center drama-main-two drama-1">{role.icon}</div>
 									<h4 className="text-2xl font-semibold mb-4 text-glow-white">{role.name}</h4>
 									<p className="text-gray-300 mb-6">{role.description}</p>
 									<ul className="text-left mb-6 space-y-2">
@@ -277,10 +360,6 @@ export default function Index() {
 					</div>
 				</div>
 			</footer>
-
-			<div className="fixed bottom-4 right-4">
-				<ColorPickerDialog/>
-			</div>
 
 		</div>
 	)

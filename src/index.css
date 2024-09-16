@@ -89,11 +89,11 @@
   }
 }
 .scrollbar-gradient-top {
-  --scrollbar-color: linear-gradient(to bottom, transparent, #a855f7);
+  --scrollbar-color: linear-gradient(to bottom, transparent, var(--main-one));
 }
 
 .scrollbar-gradient-bottom {
-  --scrollbar-color: linear-gradient(to bottom, #a855f7, transparent);
+  --scrollbar-color: linear-gradient(to bottom, var(--main-one), transparent);
 }
 
 

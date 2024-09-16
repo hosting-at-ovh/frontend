@@ -5,6 +5,8 @@ import { BrowserRouter } from 'react-router-dom';
 import routes from 'virtual:generated-pages-react';
 
 import './index.css';
+import {ColorProvider} from "./context/ColorContext.tsx";
+import ColorPickerDialog from "./components/shared/color-picker-dialog.tsx";
 
 /**
  * The main application component.
@@ -19,7 +21,12 @@ const App = (): JSX.Element => {
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
       <BrowserRouter>
-          <App />
+          <ColorProvider>
+              <App/>
+              <div className="fixed bottom-4 right-4 z-20">
+                  <ColorPickerDialog/>
+              </div>
+          </ColorProvider>
       </BrowserRouter>
   </StrictMode>,
 )
