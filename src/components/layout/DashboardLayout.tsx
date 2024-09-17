@@ -1,17 +1,18 @@
 'use client'
 
 import React, {useState} from 'react'
-import {motion} from 'framer-motion'
+import {AnimatePresence, motion} from 'framer-motion'
 import {BellIcon, HomeIcon} from '@radix-ui/react-icons'
-import {cn} from '../../lib/utils.ts'
-import {Avatar, AvatarFallback, AvatarImage} from '../ui/avatar.tsx'
-import {Sheet, SheetContent, SheetTrigger} from '../ui/sheet.tsx'
-import {MenuIcon} from "lucide-react";
-import FlexText from "../shared/flex-text.tsx";
+import {cn} from '../../lib/utils'
+import {Avatar, AvatarFallback, AvatarImage} from '../ui/avatar'
+import {Sheet, SheetContent, SheetTrigger} from '../ui/sheet'
+import {CogIcon, MenuIcon} from "lucide-react"
+import FlexText from "../shared/flex-text"
 
 const fadeIn = {
 	initial: {opacity: 0, y: 20},
-	animate: {opacity: 1, y: 0, transition: {duration: 0.6}},
+	animate: {opacity: 1, y: 0, transition: {duration: 0.6, ease: "easeOut"}},
+	exit: {opacity: 0, y: -20, transition: {duration: 0.3, ease: "easeIn"}}
 }
 
 const stagger = {
@@ -27,6 +28,7 @@ const Layout = ({children}: { children: React.ReactNode }) => {
 	const pathname = typeof window !== 'undefined' ? window.location.pathname : ''
 	const tabs = [
 		{name: 'Home', icon: HomeIcon, href: '/dashboard'},
+		{name: 'Settings', icon: CogIcon, href: '/dashboard/settings'},
 	]
 
 	const Sidebar = () => (
@@ -34,7 +36,7 @@ const Layout = ({children}: { children: React.ReactNode }) => {
 			className="w-64 bg-zinc-900 bg-opacity-5 backdrop-blur-lg p-6 flex flex-col z-10 border border-gray-400 border-opacity-20 h-full"
 			initial={{x: -100, opacity: 0}}
 			animate={{x: 0, opacity: 1}}
-			transition={{duration: 0.6}}
+			transition={{duration: 0.6, type: "spring", stiffness: 100}}
 		>
 			<motion.h1
 				className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-main-one to-main-two mb-8 z-1"
@@ -46,19 +48,21 @@ const Layout = ({children}: { children: React.ReactNode }) => {
 				<motion.ul className="z-10" variants={stagger} initial="initial" animate="animate">
 					{tabs.map((tab) => (
 						<motion.li className="z-10" key={tab.name} variants={fadeIn}>
-							<a
+							<motion.a
 								href={tab.href}
 								className={cn(
-									'flex items-center w-full p-3 mb-2 rounded-md transition-colors',
+									'flex items-center w-full p-3 mb-2 rounded-md transition-all',
 									pathname === tab.href
 										? 'bg-gradient-to-r from-main-one to-main-two text-white'
 										: 'text-gray-400 hover:text-white hover:bg-zinc-800'
 								)}
 								onClick={() => setIsOpen(false)}
+								whileHover={{scale: 1.05}}
+								whileTap={{scale: 0.95}}
 							>
 								<tab.icon className="w-5 h-5 mr-3"/>
 								{tab.name}
-							</a>
+							</motion.a>
 						</motion.li>
 					))}
 				</motion.ul>
@@ -73,13 +77,17 @@ const Layout = ({children}: { children: React.ReactNode }) => {
 		return 'Good Evening'
 	}
 
-
 	return (
 		<div className="bg-black text-white min-h-screen flex relative overflow-hidden">
-			<div className="absolute inset-0 bg-grid-white/[0.05] z-0 pointer-events-none">
+			<motion.div
+				className="absolute inset-0 bg-grid-white/[0.05] z-0 pointer-events-none"
+				initial={{opacity: 0}}
+				animate={{opacity: 1}}
+				transition={{duration: 1}}
+			>
 				<div
 					className="absolute pointer-events-none inset-0 flex items-center justify-center bg-black [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)]"></div>
-			</div>
+			</motion.div>
 
 			{/* Desktop Sidebar */}
 			<div className="hidden md:block">
@@ -89,10 +97,13 @@ const Layout = ({children}: { children: React.ReactNode }) => {
 			{/* Mobile Sidebar */}
 			<Sheet open={isOpen} onOpenChange={setIsOpen}>
 				<SheetTrigger asChild>
-					<button
-						className="md:hidden absolute top-4 left-4 z-50 p-2 rounded-md bg-zinc-800 hover:bg-zinc-700 transition-colors border border-gray-400 border-opacity-20">
+					<motion.button
+						className="md:hidden absolute top-4 left-4 z-50 p-2 rounded-md bg-zinc-800 hover:bg-zinc-700 transition-colors border border-gray-400 border-opacity-20"
+						whileHover={{scale: 1.1}}
+						whileTap={{scale: 0.9}}
+					>
 						<MenuIcon className="w-6 h-6"/>
-					</button>
+					</motion.button>
 				</SheetTrigger>
 				<SheetContent side="left" className="p-0 bg-black w-64 border-r border-gray-400 border-opacity-20">
 					<Sidebar/>
@@ -109,38 +120,58 @@ const Layout = ({children}: { children: React.ReactNode }) => {
 				>
 					<div
 						className="p-4 bg-zinc-900 bg-opacity-15 backdrop-blur-lg flex justify-between items-center mb-4 z-10 w-full h-20 border-b border-gray-400 border-opacity-20">
-						<div className={'md:flex-row gap-5 hidden md:flex'}>
-							<button
-								className={'p-2 rounded-md bg-zinc-800 hover:bg-zinc-700 transition-colors border border-gray-400 border-opacity-20 min-h-12 max-h-12 h-full relative'}
+						<AnimatePresence mode="wait">
+							<motion.div
+								key={getGreeting()}
+								className={'md:flex-row gap-5 hidden md:flex'}
+								initial={{opacity: 0, y: 20}}
+								animate={{opacity: 1, y: 0}}
+								exit={{opacity: 0, y: -20}}
+								transition={{duration: 0.5}}
 							>
-								{getGreeting()}, <FlexText username={'Fedox'}/>.
-							</button>
-						</div>
+								<motion.button
+									className={'p-2 rounded-md bg-zinc-800 bg-opacity-20 transition-colors border border-gray-400 border-opacity-20 min-h-12 max-h-12 h-full relative'}
+									whileHover={{scale: 1.05}}
+									whileTap={{scale: 0.95}}
+								>
+									{getGreeting()}, <FlexText username={'Fedox'}/>.
+								</motion.button>
+							</motion.div>
+						</AnimatePresence>
 
 						<div className="flex items-center space-x-4">
-							<button
-								className="p-2 rounded-md bg-zinc-800 hover:bg-zinc-700 transition-colors border border-gray-400 border-opacity-20 min-h-12 max-h-12 h-full">
+							<motion.button
+								className="p-2 rounded-md bg-zinc-800 bg-opacity-20 hover:bg-zinc-800 transition-colors border border-gray-400 border-opacity-20 min-h-12 max-h-12 h-full relative"
+								whileHover={{scale: 1.1}}
+								whileTap={{scale: 0.9}}
+							>
 								<BellIcon className="w-7 h-7"/>
 								<div
-									className="absolute w-3 h-3 bg-main-one rounded-full -translate-y-3 translate-x-4"/>
-							</button>
-							<button
-								className="flex items-center space-x-2 p-2 rounded-md bg-zinc-800 hover:bg-zinc-700 transition-colors border border-gray-400 border-opacity-20 min-h-12 max-h-12">
+									className="absolute w-3 h-3 bg-main-one rounded-full -translate-y-2 translate-x-4"
+								/>
+							</motion.button>
+							<motion.button
+								className="flex items-center space-x-2 p-2 rounded-md bg-zinc-800 hover:bg-zinc-800 bg-opacity-20 transition-colors border border-gray-400 border-opacity-20 min-h-12 max-h-12"
+								whileHover={{scale: 1.05}}
+								whileTap={{scale: 0.95}}
+							>
 								<Avatar>
 									<AvatarImage src="https://github.com/shadcn.png"/>
 									<AvatarFallback className="bg-black bg-opacity-25">CN</AvatarFallback>
 								</Avatar>
 								<span className="hidden sm:inline">John Doe</span>
-							</button>
+							</motion.button>
 						</div>
 					</div>
 				</motion.div>
 
-				<motion.div className={'p-8'}
-
-							variants={fadeIn}
-							initial="initial"
-							animate="animate">
+				<motion.div
+					className={'p-8'}
+					variants={fadeIn}
+					initial="initial"
+					animate="animate"
+					exit="exit"
+				>
 					{children}
 				</motion.div>
 			</main>

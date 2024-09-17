@@ -213,12 +213,7 @@ export default function Index() {
 					</div>
 				</section>
 
-				<section id="team" className="py-20 bg-black text-white relative overflow-hidden">
-					<div className="absolute inset-0 bg-grid-white/[0.07] z-0 pointer-events-none">
-						<div
-							className="absolute pointer-events-none inset-0 flex items-center justify-center bg-black [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)]"
-						></div>
-					</div>
+				<section id="team" className="py-20">
 					<div className="container mx-auto px-4 relative z-10">
 						<motion.h3
 							className="text-3xl font-bold mb-12 text-center"

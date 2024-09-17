@@ -1,13 +1,13 @@
-import { motion } from 'framer-motion';
-import { Label } from "../../components/ui/label.tsx";
+import {motion} from 'framer-motion';
+import {Label} from "../../components/ui/label.tsx";
 import {Input, LabelInputContainer} from "../../components/ui/input.tsx";
 import {useState} from "react";
 import {ArrowRightIcon} from "@radix-ui/react-icons";
 import {BottomGradient} from "../../components/shared/bottom-gradient.tsx";
 
 const fadeIn = {
-	initial: { opacity: 0, y: 20 },
-	animate: { opacity: 1, y: 0, transition: { duration: 0.6 } },
+	initial: {opacity: 0, y: 20},
+	animate: {opacity: 1, y: 0, transition: {duration: 0.6}},
 };
 
 export default function SignUp() {
@@ -68,7 +68,7 @@ export default function SignUp() {
 						{isSubmitting ? (
 							<motion.button
 								type="submit"
-								className="relative block w-full text-white rounded-md h-10 font-medium bg-gradient-to-r from-purple-400 to-purple-500 shadow-lg overflow-hidden"
+								className="relative block w-full text-white rounded-md h-10 font-medium bg-gradient-to-r from-main-one to-main-two shadow-lg overflow-hidden"
 								initial={{scale: 1, rotateX: 0}}
 								animate={{scale: 1.02, rotateX: 0}}
 								whileHover={{scale: 1.05, rotateX: 15}}
@@ -124,7 +124,7 @@ export default function SignUp() {
 				</form>
 				<p className="mt-4 text-center text-gray-400">
 					New to our page?{' '}
-					<a href="/sign-up" className="text-purple-400 hover:underline">Sign up</a>
+					<a href="/sign-up" className="text-main-one hover:underline">Sign up</a>
 				</p>
 			</motion.div>
 		</div>
