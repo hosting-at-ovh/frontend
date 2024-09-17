@@ -167,7 +167,7 @@ const Layout = ({children}: { children: React.ReactNode }) => {
 				</motion.div>
 
 				<motion.div
-					className={'p-8'}
+					className={'p-2'}
 					variants={fadeIn}
 					initial="initial"
 					animate="animate"
