@@ -2,6 +2,8 @@ import DashboardLayout from "../../components/layout/DashboardLayout.tsx";
 import {Card, CardContent} from "../../components/ui/card.tsx";
 import {Files, FilesIcon, NewspaperIcon, UsersIcon} from "lucide-react";
 import {GrStorage} from "react-icons/gr";
+import {SiteChart} from "../../components/shared/site-chart.tsx";
+import {IoAnalytics} from "react-icons/io5";
 
 export default function Index() {
 	return (
@@ -47,8 +49,18 @@ export default function Index() {
 				<Card>
 					<CardContent className="p-6">
 						<h2 className="text-lg font-semibold mb-4 flex items-center gap-3">
+							Site analytics
+							<IoAnalytics className={'w-5 h-5'}/>
+						</h2>
+						<SiteChart/>
+					</CardContent>
+				</Card>
+
+				<Card>
+					<CardContent className="p-6">
+						<h2 className="text-lg font-semibold mb-4 flex items-center gap-3">
 							News & Updates
-							<NewspaperIcon/>
+							<NewspaperIcon className={'w-5 h-5'}/>
 						</h2>
 						<div className={'p-4 bg-black bg-opacity-20 rounded-lg'}>
 							<p className="text-gray-400">No data.</p>
@@ -60,7 +72,7 @@ export default function Index() {
 					<CardContent className="p-6">
 						<h2 className="text-lg font-semibold mb-4 flex items-center gap-3">
 							Your last uploads
-							<Files/>
+							<Files className={'w-5 h-5'}/>
 						</h2>
 						<div className={'p-4 bg-black bg-opacity-20 rounded-lg'}>
 							<p className="text-gray-400">No data.</p>

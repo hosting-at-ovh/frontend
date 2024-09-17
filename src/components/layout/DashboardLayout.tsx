@@ -1,6 +1,6 @@
 'use client'
 
-import React, {useState} from 'react'
+import React, {memo, useState} from 'react'
 import {AnimatePresence, motion} from 'framer-motion'
 import {BellIcon, HomeIcon} from '@radix-ui/react-icons'
 import {cn} from '../../lib/utils'
@@ -8,6 +8,7 @@ import {Avatar, AvatarFallback, AvatarImage} from '../ui/avatar'
 import {Sheet, SheetContent, SheetTrigger} from '../ui/sheet'
 import {CogIcon, MenuIcon} from "lucide-react"
 import FlexText from "../shared/flex-text"
+import {FaDiscord} from "react-icons/fa";
 
 const fadeIn = {
 	initial: {opacity: 0, y: 20},
@@ -28,10 +29,11 @@ const Layout = ({children}: { children: React.ReactNode }) => {
 	const pathname = typeof window !== 'undefined' ? window.location.pathname : ''
 	const tabs = [
 		{name: 'Home', icon: HomeIcon, href: '/dashboard'},
+		{name: 'Embed', icon: FaDiscord, href: '/dashboard/embed'},
 		{name: 'Settings', icon: CogIcon, href: '/dashboard/settings'},
 	]
 
-	const Sidebar = () => (
+	const Sidebar = memo(() => (
 		<motion.aside
 			className="w-64 bg-zinc-900 bg-opacity-5 backdrop-blur-lg p-6 flex flex-col z-10 border border-gray-400 border-opacity-20 h-full"
 			initial={{x: -100, opacity: 0}}
@@ -56,7 +58,6 @@ const Layout = ({children}: { children: React.ReactNode }) => {
 										? 'bg-gradient-to-r from-main-one to-main-two text-white'
 										: 'text-gray-400 hover:text-white hover:bg-zinc-800'
 								)}
-								onClick={() => setIsOpen(false)}
 								whileHover={{scale: 1.05}}
 								whileTap={{scale: 0.95}}
 							>
@@ -68,7 +69,7 @@ const Layout = ({children}: { children: React.ReactNode }) => {
 				</motion.ul>
 			</nav>
 		</motion.aside>
-	)
+	));
 
 	const getGreeting = () => {
 		const time = new Date().getHours()
