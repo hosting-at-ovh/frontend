@@ -1,9 +1,9 @@
 import DashboardLayout from "../../components/layout/DashboardLayout.tsx";
 import {Card, CardContent} from "../../components/ui/card.tsx";
-import {Files, FilesIcon, NewspaperIcon, UsersIcon} from "lucide-react";
-import {GrStorage} from "react-icons/gr";
+import {Files, NewspaperIcon} from "lucide-react";
 import {SiteChart} from "../../components/shared/site-chart.tsx";
 import {IoAnalytics} from "react-icons/io5";
+import StatsCard from "../../components/shared/stats-card.tsx";
 
 export default function Index() {
 	return (
@@ -11,39 +11,9 @@ export default function Index() {
 			<div className="p-6 space-y-6">
 
 				<div className="grid grid-cols-1 md:grid-cols-3 gap-12">
-					<Card>
-						<CardContent className="flex items-center p-6 gap-6">
-							<div className={'bg-main-one p-7 rounded-md'}>
-								<FilesIcon className={'w-7 h-7'}/>
-							</div>
-							<div className="space-y-1">
-								<p className="text-sm font-medium text-gray-200">Total uploads</p>
-								<p className="text-3xl font-bold">1</p>
-							</div>
-						</CardContent>
-					</Card>
-					<Card>
-						<CardContent className="flex items-center p-6 gap-6">
-							<div className={'bg-main-one p-7 rounded-md'}>
-								<UsersIcon className={'w-7 h-7'}/>
-							</div>
-							<div className="space-y-1">
-								<p className="text-sm font-medium text-gray-200">Total users</p>
-								<p className="text-3xl font-bold">412</p>
-							</div>
-						</CardContent>
-					</Card>
-					<Card>
-						<CardContent className="flex items-center p-6 gap-6">
-							<div className={'bg-main-one p-7 rounded-md'}>
-								<GrStorage className={'w-7 h-7'}/>
-							</div>
-							<div className="space-y-1">
-								<p className="text-sm font-medium text-gray-200">Used storage</p>
-								<p className="text-3xl font-bold">62.34 KB / 5GB</p>
-							</div>
-						</CardContent>
-					</Card>
+					<StatsCard title={'Total uploads'} value={'1'}/>
+					<StatsCard title={'Total users'} value={'412'}/>
+					<StatsCard title={'Used storage'} value={'62.34 KB / 5GB'}/>
 				</div>
 
 				<Card>

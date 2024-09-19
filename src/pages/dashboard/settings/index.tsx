@@ -18,7 +18,7 @@ export default function Index() {
 									when you
 									upload
 									files. <span
-										className={'font-bold text-main-one underline'}>Don't share it with someone.</span>
+										className={'font-bold text-main-one underline drama-1 drama-main-one'}>Don't share it with someone.</span>
 								</p>
 							</div>
 							<div className={'w-full'}>

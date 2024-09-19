@@ -71,6 +71,7 @@ export function SiteChart() {
 						dataKey="uploads"
 						type="monotone"
 						fill="url(#filluploads)"
+						className={'drama-5 drama-main-two'}
 						fillOpacity={0.4}
 						stroke="var(--color-uploads)"
 						stackId="a"
