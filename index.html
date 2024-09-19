@@ -1,30 +1,30 @@
 <!DOCTYPE html>
-<html lang="en" class="bg-black text-white">
+<html class="bg-black text-white" lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <link rel="icon" type="image/svg+xml" href="/icon.svg" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Hosting-at.OVH - Capture. Upload. Share.</title>
-  <meta name="description" content="The ultimate screenshot solution for professionals and enthusiasts alike." />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-  <link href='https://fonts.googleapis.com/css?family=Ubuntu' rel='stylesheet'>
+    <meta charset="UTF-8"/>
+    <link href="/icon.svg" rel="icon" type="image/svg+xml"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Hosting-at.OVH - Capture. Upload. Share.</title>
+    <meta content="The ultimate upload solution for cool people." name="description"/>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href='https://fonts.googleapis.com/css?family=Ubuntu' rel='stylesheet'>
 </head>
 <body class="font-sans antialiased">
-<div id="root" class="min-h-screen flex flex-col"></div>
-<script type="module" src="/src/main.tsx"></script>
+<div class="min-h-screen flex flex-col" id="root"></div>
+<script src="/src/main.tsx" type="module"></script>
 <script>
-  document.addEventListener('scroll', () => {
-    const scrollPosition = window.scrollY;
-    const pageHeight = document.documentElement.scrollHeight - window.innerHeight;
+    document.addEventListener('scroll', () => {
+        const scrollPosition = window.scrollY;
+        const pageHeight = document.documentElement.scrollHeight - window.innerHeight;
 
-    if (scrollPosition > pageHeight / 2) {
-      document.body.classList.add('scrollbar-gradient-top');
-      document.body.classList.remove('scrollbar-gradient-bottom');
-    } else {
-      document.body.classList.add('scrollbar-gradient-bottom');
-      document.body.classList.remove('scrollbar-gradient-top');
-    }
-  });
+        if (scrollPosition > pageHeight / 2) {
+            document.body.classList.add('scrollbar-gradient-top');
+            document.body.classList.remove('scrollbar-gradient-bottom');
+        } else {
+            document.body.classList.add('scrollbar-gradient-bottom');
+            document.body.classList.remove('scrollbar-gradient-top');
+        }
+    });
 </script>
 </body>
 </html>

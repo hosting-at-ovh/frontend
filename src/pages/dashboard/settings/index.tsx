@@ -45,16 +45,10 @@ export default function Index() {
 								Download ShareX
 							</button>
 							<button
-								className="w-full font-semibold bg-gradient-to-br from-main-one to-main-two p-2 rounded-lg transition-all duration-300 ease-in-out hover:scale-90 hover:shadow-lg hover:from-main-two hover:to-main-one"
+								className="w-full font-semibold border border-main-one p-2 rounded-lg transition-all duration-300 ease-in-out hover:scale-90 hover:shadow-lg hover:bg-main-one hover:text-white"
 								aria-label="Download ShareX config"
 							>
 								Download ShareX config
-							</button>
-							<button
-								className="w-full font-semibold border border-main-one p-2 rounded-lg transition-all duration-300 ease-in-out hover:scale-90 hover:shadow-lg hover:bg-main-one hover:text-white"
-								aria-label="Reset IP"
-							>
-								Reset IP
 							</button>
 
 						</CardContent>
