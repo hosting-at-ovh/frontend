@@ -38,7 +38,7 @@ export default function FlexText({username}: { username: string }) {
 	const currentRoleColor = roleColor.find(rc => rc.role === 'staff')?.color;
 
 	return (
-		<span style={{
+		<span className={'text-glow-current'} style={{
 			backgroundImage: `url(${currentRoleParticle})`,
 			backgroundPosition: 'center',
 			backgroundRepeat: 'repeat',
