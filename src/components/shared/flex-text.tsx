@@ -1,4 +1,24 @@
+import {useEffect, useState} from "react";
+import {HostingAtOvh} from "../../lib/api/hosting-at-ovh.ts";
+
+interface RoleResponse {
+	role: string;
+}
+
+
 export default function FlexText({username}: { username: string }) {
+
+	const [role, setRole] = useState<RoleResponse | null>(null);
+
+	useEffect(() => {
+		HostingAtOvh.getAPI()
+			.getRole(username)
+			.then((data: unknown) => {
+				const roleData = data as RoleResponse;
+
+				return setRole(roleData);
+			});
+	}, [username]);
 
 	const roleParticles = [
 		{
@@ -34,8 +54,10 @@ export default function FlexText({username}: { username: string }) {
 		}
 	]
 
-	const currentRoleParticle = roleParticles.find(rp => rp.role === 'staff')?.particle;
-	const currentRoleColor = roleColor.find(rc => rc.role === 'staff')?.color;
+	const newRole = role || "user";
+
+	const currentRoleParticle = roleParticles.find(rp => rp.role === newRole)?.particle;
+	const currentRoleColor = roleColor.find(rc => rc.role === newRole)?.color;
 
 	return (
 		<span className={'text-glow-current'} style={{

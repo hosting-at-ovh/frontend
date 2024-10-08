@@ -65,7 +65,7 @@ const fakeData = [
 		email: 'olivia.wilson@aol.com',
 		username: 'Olivia Wilson',
 		role: 'User'
-	}
+	},
 ];
 
 

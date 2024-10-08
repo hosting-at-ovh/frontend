@@ -6,7 +6,9 @@ import {Card, CardContent, CardFooter, CardHeader, CardTitle} from "../../../com
 import ReportDialog from "../../../components/shared/report-dialog.tsx";
 import FlexText from "../../../components/shared/flex-text.tsx";
 import DownloadButton from "../../../components/shared/download-button.tsx";
-import {useState} from "react";
+import {useEffect, useState} from "react";
+import {HostingAtOvh} from "../../../lib/api/hosting-at-ovh.ts";
+import {useParams} from "react-router";
 
 interface ModalProps {
 	isOpen: boolean;
@@ -32,7 +34,26 @@ function ImageModal({isOpen, onClose, imageUrl, altText}: ModalProps) {
 	);
 }
 
+interface ApiResponse {
+	relatedFile: string;
+	delay: number;
+	user: {
+		username: string;
+	};
+}
+
+interface ImageData {
+	date: string;
+	fileSize: string;
+	originalName: string;
+	uploadTime: string;
+	url: string;
+	username: string;
+}
+
 export default function ImageUploadPage() {
+
+	const {id} = useParams();
 
 	const [isModalOpen, setIsModalOpen] = useState(false)
 
@@ -40,13 +61,59 @@ export default function ImageUploadPage() {
 		setIsModalOpen(true);
 	};
 
-	const imageData = {
-		url: "https://images.photowall.com/products/59453/landscape-waterfall.jpg?h=699&q=85",
-		originalName: "beautiful-landscape.jpg",
-		fileSize: "2.5 MB",
-		username: "JohnDoe",
-		date: "2023-07-15 14:30:00",
-		uploadTime: "2.3 seconds"
+	const [imageData, setImageData] = useState<ImageData | null>(null);
+
+	useEffect(() => {
+		HostingAtOvh.getAPI()
+			.getUpload(Number(id))
+			.then((data: unknown) => {
+				const apiResponse = data as ApiResponse;
+
+				if (apiResponse) {
+					setImageData({
+						date: "",
+						fileSize: "",
+						originalName: apiResponse.relatedFile || "Unknown",
+						uploadTime: apiResponse.delay ? `${apiResponse.delay}ms` : "Unknown time",
+						url: "http://localhost:8080" + apiResponse.url,
+						username: apiResponse.user?.username || "Unknown user"
+					});
+				} else {
+					console.warn("No data returned from API");
+				}
+			})
+			.catch((error) => {
+				console.error("Error fetching data:", error);
+			});
+	}, [id]);
+
+	// const fakeData = {
+	// 	url: "https://images.photowall.com/products/59453/landscape-waterfall.jpg?h=699&q=85",
+	// 	originalName: "beautiful-landscape.jpg",
+	// 	fileSize: "2.5 MB",
+	// 	username: "JohnDoe",
+	// 	date: "2023-07-15 14:30:00",
+	// 	uploadTime: "2.3 seconds"
+	// }
+
+	if (!imageData) {
+		return (
+			<ContentLayout>
+				<div className="container mx-auto p-4">
+					<Card className="w-full">
+						<CardHeader>
+							<CardTitle className="text-2xl flex items-center gap-2">
+								<ImageIcon className="h-6 w-6 drama-5 drama-white"/>
+								Loading...
+							</CardTitle>
+						</CardHeader>
+						<CardContent>
+							<p className="text-muted-foreground">Loading image data...</p>
+						</CardContent>
+					</Card>
+				</div>
+			</ContentLayout>
+		);
 	}
 
 	return (
@@ -60,7 +127,7 @@ export default function ImageUploadPage() {
 						</CardTitle>
 					</CardHeader>
 					<CardContent className="space-y-4">
-						<div className="w-full max-h-96 overflow-hidden bg-zinc-900 rounded-lg cursor-pointer"
+						<div className="w-full h-auto overflow-hidden bg-zinc-900 rounded-lg cursor-pointer"
 							 onClick={handleImageClick}>
 							<img
 								src={imageData.url}
@@ -70,6 +137,7 @@ export default function ImageUploadPage() {
 								decoding="async"
 							/>
 						</div>
+
 						<div className="grid grid-cols-2 gap-4">
 							<div className="flex justify-between items-center">
 								<span className="text-sm text-gray-400">File size:</span>
